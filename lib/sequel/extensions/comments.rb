@@ -12,8 +12,7 @@ module Sequel
         sql = super(*a)
         if (comment = @opts[:comment])
           sql << comment
-        else
-          backtrace = caller_locations(1, 1).first
+        elsif (backtrace = caller_locations(1).find { |c| c.path !~ /gems/ })
           sql << format_sql_comment(backtrace)
         end
         sql
