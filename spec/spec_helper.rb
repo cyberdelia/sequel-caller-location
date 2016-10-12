@@ -1,3 +1,4 @@
+# frozen-string-literal: true
 require 'bundler'
 Bundler.require
 
@@ -7,17 +8,8 @@ SimpleCov.start do
 end
 
 require 'sequel'
-require 'sequel/extensions/comments'
+require 'sequel/extensions/caller_location'
 
 RSpec.configure do |config|
   config.order = 'random'
-
-  config.before(:suite) do
-    Sequel::Model.plugin(:schema)
-    Sequel.connect('sqlite:/')
-  end
-
-  config.around(:each) do |example|
-    Sequel::Model.db.transaction(rollback: :always) { example.run }
-  end
 end
