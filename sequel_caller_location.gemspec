@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = 'sequel_caller_location'
   gem.require_paths = ['lib']
-  gem.version       = '0.1.1'
+  gem.version       = '0.2.0'
 
   gem.add_runtime_dependency 'sequel', '~> 4.39', '>= 4.39.0'
 
