@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = '0.2.0'
 
-  gem.add_runtime_dependency 'sequel', '~> 4.39', '>= 4.39.0'
+  gem.add_runtime_dependency 'sequel', '>= 4.39.0'
 
   gem.add_development_dependency 'rspec', '~> 3.5', '>= 3.5.0'
   gem.add_development_dependency 'simplecov', '~> 0.12.0'
