@@ -1,5 +1,3 @@
-# -*- encoding: utf-8 -*-
-
 Gem::Specification.new do |gem|
   gem.authors       = ['Timothée Peignier']
   gem.email         = ['timothee.peignier@tryphon.org']

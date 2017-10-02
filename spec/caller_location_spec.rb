@@ -1,4 +1,5 @@
 # frozen-string-literal: true
+
 require 'spec_helper'
 
 describe Sequel::CallerLocation do

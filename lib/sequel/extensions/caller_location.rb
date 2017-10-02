@@ -1,9 +1,10 @@
 # frozen-string-literal: true
+
 require 'sequel'
 
 module Sequel
   module CallerLocation
-    %w(select insert update delete).each do |type|
+    %w[select insert update delete].each do |type|
       define_method(:"#{type}_sql") do |*a|
         sql = super(*a)
         if !sql.frozen? && (backtrace = caller_locations(1).find { |c| c.path !~ /gems/ })
