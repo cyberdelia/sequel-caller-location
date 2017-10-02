@@ -3,3 +3,4 @@ coverage
 doc/
 .yardoc
 .tags
+Gemfile.lock
