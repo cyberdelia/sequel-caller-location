@@ -1,1 +1,15 @@
-inherit_from: .rubocop_todo.yml
+require:
+  - rubocop-rspec
+
+# Offense count: 2
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'lib/sequel/extensions/caller_location.rb'
+
+# Offense count: 5
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
+# URISchemes: http, https
+Metrics/LineLength:
+  Max: 106
