@@ -9,11 +9,21 @@ describe Sequel::CallerLocation do
     expect(ds.select_sql).to eq("SELECT * FROM t -- #{caller_locations(0, 1).first}\n")
   end
 
+  it 'add caller location to select statement only once' do
+    ds.select_sql
+    expect(ds.select_sql).to eq("SELECT * FROM t -- #{caller_locations(0, 1).first}\n")
+  end
+
   it 'add caller location to insert statement' do
     expect(ds.insert_sql(a: 1)).to eq("INSERT INTO t (a) VALUES (1) -- #{caller_locations(0, 1).first}\n")
   end
 
   it 'add caller location to delete statement' do
+    expect(ds.delete_sql).to eq("DELETE FROM t -- #{caller_locations(0, 1).first}\n")
+  end
+
+  it 'add caller location to delete statement only once' do
+    ds.delete_sql
     expect(ds.delete_sql).to eq("DELETE FROM t -- #{caller_locations(0, 1).first}\n")
   end
 
