@@ -17,8 +17,8 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency 'sequel', '>= 4.39.0'
 
-  gem.add_development_dependency 'rspec', '~> 3.5', '>= 3.5.0'
-  gem.add_development_dependency 'rubocop', '~> 0.52', '>= 0.52.0'
-  gem.add_development_dependency 'rubocop-rspec', '~> 1.22.0', '>= 1.22.0'
-  gem.add_development_dependency 'simplecov', '~> 0.15.0'
+  gem.add_development_dependency 'rspec', '~> 3.9', '>= 3.9.0'
+  gem.add_development_dependency 'rubocop', '~> 0.83', '>= 0.83.0'
+  gem.add_development_dependency 'rubocop-rspec', '~> 1.39.0', '>= 1.39.0'
+  gem.add_development_dependency 'simplecov', '~> 0.18.5'
 end
