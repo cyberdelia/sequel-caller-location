@@ -4,17 +4,42 @@ require 'sequel'
 
 module Sequel
   module CallerLocation
-    %w[select insert update delete].each do |type|
-      define_method(:"#{type}_sql") do |*a|
-        sql = super(*a)
-        if !sql.frozen? && (backtrace = caller_locations(1).find { |c| c.path !~ /gems/ })
-          sql << format_sql_comment(backtrace)
-        end
-        sql
-      end
+    def insert_sql(*values)
+      sql = super(*values)
+      backtrace = caller_locations(1).find { |c| c.path !~ /gems/ }
+      append_location(sql, backtrace)
+      sql
+    end
+
+    def update_sql(*values)
+      sql = super(*values)
+      backtrace = caller_locations(1).find { |c| c.path !~ /gems/ }
+      append_location(sql, backtrace)
+      sql
+    end
+
+    def select_sql(*values)
+      sql = super(*values)
+      backtrace = caller_locations(1).find { |c| c.path !~ /gems/ }
+
+      @cache.delete(:_select_sql)
+      append_location(sql, backtrace)
+      sql
+    end
+
+    def delete_sql(*values)
+      sql = super(*values)
+      backtrace = caller_locations(1).find { |c| c.path !~ /gems/ }
+      @cache.delete(:_delete_sql)
+      append_location(sql, backtrace)
+      sql
     end
 
     private
+
+    def append_location(sql, backtrace)
+      sql << format_sql_comment(backtrace) if !sql.frozen? && backtrace
+    end
 
     def format_sql_comment(comment)
       " -- #{comment.to_s.gsub(/\s+/, ' ')}\n"
