@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = '0.3.0'
 
-  spec.required_ruby_version = '>= 2.4'
+  gem.required_ruby_version = '>= 2.4'
 
   gem.add_runtime_dependency 'sequel', '>= 4.39.0'
 
