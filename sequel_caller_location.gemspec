@@ -5,7 +5,7 @@ Gem::Specification.new do |gem|
   gem.email         = ['timothee.peignier@tryphon.org']
   gem.description   = 'Add caller location as SQL comments'
   gem.summary       = 'Add caller location as SQL comments.'
-  gem.homepage      = 'http://rubygems.org/gems/sequel_caller_location'
+  gem.homepage      = 'https://rubygems.org/gems/sequel_caller_location'
   gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($OUTPUT_RECORD_SEPARATOR)
