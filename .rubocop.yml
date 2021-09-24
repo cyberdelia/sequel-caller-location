@@ -11,8 +11,3 @@ Style/Documentation:
     - 'test/**/*'
     - 'lib/sequel/extensions/caller_location.rb'
 
-# Offense count: 5
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
-Layout/LineLength:
-  Max: 106
