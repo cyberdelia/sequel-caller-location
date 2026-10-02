@@ -1,4 +1,4 @@
-require:
+plugins:
   - rubocop-rspec
 
 AllCops:
@@ -10,4 +10,3 @@ Style/Documentation:
     - 'spec/**/*'
     - 'test/**/*'
     - 'lib/sequel/extensions/caller_location.rb'
-
