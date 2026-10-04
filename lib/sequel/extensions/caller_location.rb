@@ -1,44 +1,42 @@
-# frozen-string-literal: true
+# frozen_string_literal: true
 
 require 'sequel'
 
 module Sequel
   module CallerLocation
     def insert_sql(*values)
-      sql = super(*values)
+      sql = super
       backtrace = caller_locations(1).find { |c| c.path !~ /gems/ }
       append_location(sql, backtrace)
-      sql
     end
 
     def update_sql(*values)
-      sql = super(*values)
+      sql = super
       backtrace = caller_locations(1).find { |c| c.path !~ /gems/ }
       append_location(sql, backtrace)
-      sql
     end
 
     def select_sql(*values)
-      sql = super(*values)
+      sql = super
       backtrace = caller_locations(1).find { |c| c.path !~ /gems/ }
 
       @cache.delete(:_select_sql)
       append_location(sql, backtrace)
-      sql
     end
 
     def delete_sql(*values)
-      sql = super(*values)
+      sql = super
       backtrace = caller_locations(1).find { |c| c.path !~ /gems/ }
       @cache.delete(:_delete_sql)
       append_location(sql, backtrace)
-      sql
     end
 
     private
 
     def append_location(sql, backtrace)
-      sql << format_sql_comment(backtrace) if !sql.frozen? && backtrace
+      return sql unless backtrace
+
+      sql + format_sql_comment(backtrace)
     end
 
     def format_sql_comment(comment)

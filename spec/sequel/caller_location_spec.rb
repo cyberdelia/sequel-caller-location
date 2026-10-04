@@ -1,4 +1,4 @@
-# frozen-string-literal: true
+# frozen_string_literal: true
 
 require 'spec_helper'
 
@@ -29,5 +29,14 @@ describe Sequel::CallerLocation do
 
   it 'add caller location to update statement' do
     expect(ds.update_sql(a: 1)).to eq("UPDATE t SET a = 1 -- #{caller_locations(0, 1).first}\n")
+  end
+
+  it 'does not mutate frozen SQL' do
+    sql = String.new('SELECT * FROM t').freeze
+    location = caller_locations(0, 1).first
+
+    result = ds.send(:append_location, sql, location)
+
+    expect(result).to eq("SELECT * FROM t -- #{location}\n")
   end
 end

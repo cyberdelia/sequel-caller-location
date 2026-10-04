@@ -1,16 +1,17 @@
 name: Build
-on: [push]
+on:
+  push:
+  pull_request:
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.6
-    - name: Install dependencies
-      run: bundle install
+        ruby-version: '3.4'
+        bundler-cache: true
     - name: Run linter
       run: bundle exec rubocop --parallel
     - name: Run tests
