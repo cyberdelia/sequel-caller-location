@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.executables   = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
   gem.name          = 'sequel_caller_location'
   gem.require_paths = ['lib']
-  gem.version       = '0.4.0'
+  gem.version       = '0.4.1'
 
   gem.required_ruby_version = '>= 2.4'
 

@@ -39,4 +39,12 @@ describe Sequel::CallerLocation do
 
     expect(result).to eq("SELECT * FROM t -- #{location}\n")
   end
+
+  it 'preserves SQL identity for placeholder literalizers' do
+    loader = ds.placeholder_literalizer_loader do |placeholder, dataset|
+      dataset.where(id: placeholder.arg)
+    end
+
+    expect(loader.sql(1)).to start_with('SELECT * FROM t WHERE (id = 1) -- ')
+  end
 end

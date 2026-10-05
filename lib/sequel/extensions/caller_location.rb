@@ -36,7 +36,8 @@ module Sequel
     def append_location(sql, backtrace)
       return sql unless backtrace
 
-      sql + format_sql_comment(backtrace)
+      comment = format_sql_comment(backtrace)
+      sql.frozen? ? sql + comment : sql << comment
     end
 
     def format_sql_comment(comment)
