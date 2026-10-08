@@ -7,4 +7,4 @@ gemspec
 gem 'rspec', '~> 3.13'
 gem 'rubocop', '~> 1.75'
 gem 'rubocop-rspec', '~> 3.7'
-gem 'simplecov', '~> 0.22'
+gem 'simplecov', '~> 1.3'
